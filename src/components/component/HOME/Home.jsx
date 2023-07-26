@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import ShowData from '../showData/ShowData';
 import Ordersummery from '../Oderpage/Ordersummery';
+import { addToDb, getShoppingCart } from '../../../../utilities/fakedb';
 
 const Home = () => {
     const [items, setItems] = useState([]);
@@ -12,10 +13,27 @@ const Home = () => {
             .then(data => setItems(data))
     }, []);
 
+    useEffect(()=>{
+        // console.log(items)
+        const storedcard = getShoppingCart();
+        const savecard = []
+        for(const id in storedcard){
+            const addedproduct = items.find(product => product.id === id);
+            if(addedproduct){
+                const quantity = storedcard[id];
+                addedproduct.quantity=quantity;
+                savecard.push(addedproduct)
+            }    
+            console.log(addedproduct) 
+        }
+        setCart(savecard) 
+    },[items])
+
     const hendleaddtocard = (dataitem) => {
         const newcart = [...cart, dataitem]
         setCart(newcart)
         //    console.log(newcart)
+        addToDb(dataitem.id)
     }
 
     return (
@@ -39,14 +57,7 @@ const Home = () => {
                     ></Ordersummery>)
                 } */}
 
-                <Ordersummery
-                cart={cart}
-                >
-
-                </Ordersummery>
-
-                
-                
+                <Ordersummery cart={cart}></Ordersummery>
             </div>
         </div>
     );
