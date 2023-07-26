@@ -8,7 +8,7 @@ const ShowData = (props) => {
     const hendleaddtocard =props.hendleaddtocard;
     return (
         <div className=''>
-            <div className="p-4 rounded-md w-72 gap-3  bg-base-100 shadow-xl border-black">
+            <div className="p-4 rounded-md w-80 gap-3  bg-base-100 shadow-xl border-black">
                 <figure><img src={img} alt="Shoes" /></figure>
                 <div className="mt-2">
                     <h6 className="card-title  text-base ">

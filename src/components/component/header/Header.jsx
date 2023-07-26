@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
-        <div>
+        <div className=' container mx-auto sticky top-0'>
             <div className="navbar bg-black">
                 <div className="flex-1 px-3">
                     <img src={logo} alt="" />
