@@ -4,14 +4,14 @@ import React from 'react';
 
 // eslint-disable-next-line react/prop-types
 const Ordersummery = ({cart}) => {
-
 let total =0;
 let totalshiping = 0;
 let quantity =0;
 for(const products of cart){
-    if(products.quantity ===0){
-        products.quantity =1;
-    }
+    // if(products.quantity === 0){
+    //     products.quantity =1;
+    // }
+    products.quantity = products.quantity || 1;
     // products.quantity = products.quantity || 1;
      total =total + products.price * products.quantity;
      totalshiping = totalshiping + products.shipping;
@@ -21,9 +21,9 @@ for(const products of cart){
 const tax = total * 7 / 100;
 const grandtotal = total + totalshiping + tax;
     return (
-        <div className='p-3 sticky top-0'>
-            <h1  className=' text-2xl'>Order Summery</h1>
-            <div className='mt-3 '>
+        <div className='sticky top-0'>
+            <h1  className='mt-5 ml-5 text-2xl'>Order Summery</h1>
+            <div className='mt-2 p-5 grid gap-3'>
                 <p>Selected Items: {quantity}</p>
                 <p>Total Price: $ {total}</p>
                 <p>Total Shipping Charge: $ {totalshiping}</p>
